@@ -50,7 +50,13 @@ function ChannelLink({
             <div className="relative -right-10 -top-6 inline-flex h-6 w-6 items-center rounded-full border border-neutral-200 bg-white p-1 dark:border-neutral-700">
               <Image
                 alt="github logo"
-                src={site === "github" ? "/github.jpg" : "/linkedin.png"}
+                src={
+                  site === "github"
+                    ? "/github.jpg"
+                    : site === "kaggle"
+                      ? "/kaggle.png"
+                      : "/linkedin.png"
+                }
                 width="15"
                 height="11"
               />
@@ -64,6 +70,23 @@ function ChannelLink({
         </div>
         <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
           <ArrowIcon />
+        </div>
+      </a>
+    </div>
+  );
+}
+
+function ChannelPlaceholder() {
+  return (
+    <div className="group flex w-full opacity-0">
+      <a className="flex w-full items-center justify-between rounded border border-transparent bg-transparent px-3 py-4">
+        <div className="flex items-center space-x-3">
+          <div className="relative h-16 w-16">
+            {/* Placeholder for image and icon, no content */}
+          </div>
+          <p className="font-medium text-transparent">
+            {"Placeholder"} {/* Invisible text */}
+          </p>
         </div>
       </a>
     </div>
@@ -98,6 +121,15 @@ export default function Home() {
           name="LinkedIn"
           site="linkedin"
         />
+      </div>
+      <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+        <ChannelLink
+          img="/book.png"
+          link="https://www.kaggle.com/davidrussell04"
+          name="Kaggle"
+          site="kaggle"
+        />
+        <ChannelPlaceholder />
       </div>
       I create functional and well designed web applications using JavaScript,
       TypeScript, React, Node.js, Python and more.
