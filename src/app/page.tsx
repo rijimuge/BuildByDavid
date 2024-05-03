@@ -103,7 +103,7 @@ export default function Home() {
       <br />
       <br />
       <Image
-        src="/withbike.png"
+        src="/sun.png"
         alt="David with a bike"
         width={250} // Specify your desired width
         height={150} // Specify your desired height
@@ -116,7 +116,7 @@ export default function Home() {
           site="github"
         />
         <ChannelLink
-          img="/sun.png"
+          img="/withbike.png"
           link="https://www.linkedin.com/in/davidrussellengineer/"
           name="LinkedIn"
           site="linkedin"
