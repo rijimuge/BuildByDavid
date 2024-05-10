@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://davidrussell.dev"),
   title: {
     default: "David Russell",
-    template: "%s | Lee Robinson",
+    template: "%s | David Russell",
   },
   description: "Developer",
   openGraph: {
