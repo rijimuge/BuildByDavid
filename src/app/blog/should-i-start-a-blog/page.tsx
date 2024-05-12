@@ -1,10 +1,8 @@
 export default function Page() {
   return (
     <div className="blog-content">
-      <h2 className="mb-2 text-xl font-semibold">
-        Should I Start a Blog?
-      </h2>
-      <div className ="indent-4 opacity-60">April 28 2024</div>
+      <h2 className="mb-2 text-xl font-semibold">Should I Start a Blog?</h2>
+      <div className="indent-4 opacity-60">April 28 2024</div>
       <p>
         Apparently, yes! Here it is, such as it is. Let me explain how I reached
         my decision.

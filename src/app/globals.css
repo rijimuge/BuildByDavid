@@ -89,7 +89,7 @@ h4 {
 }
 
 .blog-content p {
-  @apply indent-4 py-2;
+  @apply py-2;
 }
 
 .prose > :first-child {
