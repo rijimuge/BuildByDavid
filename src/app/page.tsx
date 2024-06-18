@@ -111,7 +111,7 @@ export default function Home() {
       <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
         <ChannelLink
           img="/avatar.jpg"
-          link="https://github.com/rijimuge"
+          link="https://github.com/russedavid"
           name="GitHub"
           site="github"
         />
