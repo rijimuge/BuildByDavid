@@ -18,6 +18,13 @@ export default function Page() {
       >
         <h2 className="mb-2 text-xl font-semibold">Why I started kaggling</h2>
       </Link>
+      <Link
+        href="blog/quick-diarization"
+        passHref
+        className="py-4 underline"
+      >
+        <h2 className="mb-2 text-xl font-semibold">Quick and easy Diarization</h2>
+      </Link>
     </div>
   );
 }
