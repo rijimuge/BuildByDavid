@@ -1,3 +1,5 @@
+import CodeBlock from "@/app/components/codeblock";
+
 export default function Page() {
   return (
     <div className="blog-content">
@@ -24,11 +26,10 @@ export default function Page() {
         Diarization means, simply put, who said what. It converts a string of
         words into something like:
       </p>
-      <pre className="overflow-x-auto border-l-4 border-orange-500 bg-gray-700 p-4 font-mono text-sm">
-        Speaker 1: Oh what a lovely day.
-        <br />
-        Speaker 2: Oh what a lovely day, what a deal.
-      </pre>
+      <CodeBlock code={`
+Speaker 1: Oh what a lovely day.
+Speaker 2: Oh what a lovely day, what a deal.
+        `} />
       <p>You can view the entire source code for this blog entry here:</p>
       <a href="https://github.com/russedavid/diarization-stuff/blob/main/diarize_audio.py">
         github.com/russedavid/diarization-stuff
@@ -63,22 +64,16 @@ export default function Page() {
         If you&apos;re not using a CUDA-enabled GPU, you can adapt the settings
         to utilize a CPU.
       </p>
-      <pre className="overflow-x-auto border-l-4 border-orange-500 bg-gray-700 p-4 font-mono text-sm">
-        import whisperx
-        <br />
-        import subprocess
-        <br />
-        <br />
-        device = &quot;cuda&quot;
-        <br />
-        batch_size = 16
-        <br />
-        compute_type = &quot;float16&quot;
-        <br />
-        <br />
-        model = whisperx.load_model(&quot;large-v2&quot;, device,
-        compute_type=compute_type, language=&quot;en&quot;)
-      </pre>
+      <CodeBlock code={`
+import whisperx
+import subprocess
+
+device = "cuda"
+batch_size = 16
+compute_type = "float16"
+
+model = whisperx.load_model("large-v2", device, compute_type=compute_type, language="en")
+            `} />
       <br />
       <h3>Audio Concatenation</h3>
       <p>
@@ -90,25 +85,16 @@ export default function Page() {
         processing, retaining the context of all sessions as the audio is
         diarized.
       </p>
-      <pre className="overflow-x-auto border-l-4 border-orange-500 bg-gray-700 p-4 font-mono text-sm">
-        def concatenate_audios_ffmpeg(file_list, output_filename):
-        <br />
-        {"    "}with open(&quot;audio_list.txt&quot;, &quot;w&quot;) as file:
-        <br />
-        {"        "}for audio_file in file_list:
-        <br />
-        {"            "}file.write(f&quot;file &apos;{"{"}audio_file{"}"}
-        &apos;\\n&quot;)
-        <br />
-        {"    "}command = [&quot;ffmpeg&quot;, &quot;-f&quot;,
-        &quot;concat&quot;, &quot;-safe&quot;, &quot;0&quot;, &quot;-i&quot;,
-        &quot;audio_list.txt&quot;, &quot;-c&quot;, &quot;copy&quot;,
-        output_filename]
-        <br />
-        {"    "}subprocess.run(command, check=True)
-        <br />
-        {"    "}return whisperx.load_audio(output_filename)
-      </pre>
+      <CodeBlock code={`
+def concatenate_audios_ffmpeg(file_list, output_filename):
+    with open("audio_list.txt", "w") as file:
+        for audio_file in file_list:
+            file.write(f"file '{audio_file}'\\n")
+    command = ["ffmpeg", "-f", "concat", "-safe", "0", "-i", "audio_list.txt", "-c", "copy", output_filename]
+    subprocess.run(command, check=True)
+    return whisperx.load_audio(output_filename)
+      `} />
+
       <br />
       <h3>Transcribing and Aligning Speech</h3>
       <p>
@@ -126,15 +112,11 @@ export default function Page() {
       <a href="https://huggingface.co/pyannote/speaker-diarization-3.1">
         huggingface.co/pyannote/speaker-diarization-3.1
       </a>
-      <pre className="overflow-x-auto border-l-4 border-orange-500 bg-gray-700 p-4 font-mono text-sm">
-        diarize_model =
-        whisperx.DiarizationPipeline(model_name=&quot;pyannote/speaker-diarization-3.1&quot;,
-        use_auth_token=hugging_face_api_key, device=device)
-        <br />
-        diarize_segments = diarize_model(audio)
-        <br />
-        result = whisperx.assign_word_speakers(diarize_segments, result)
-      </pre>
+      <CodeBlock code={`
+diarize_model = whisperx.DiarizationPipeline(model_name="pyannote/speaker-diarization-3.1", use_auth_token=hugging_face_api_key, device=device)
+diarize_segments = diarize_model(audio)
+result = whisperx.assign_word_speakers(diarize_segments, result)
+              `} />
       <br />
       <h3>Structuring the Output</h3>
       <p>
