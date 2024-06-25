@@ -15,21 +15,21 @@ export default function Page() {
           github.com/russedavid/diarization-stuff
         </a>
         <br />
-        <br />
-
-        I had an interesting idea recently about building a particular kind of
-        conversational dataset, in a text format that could be used to fine-tune
-        an LLM for a particular task. So I needed to figure out how to convert
-        some audio I had into a text with diarization.
+        <br />I had an interesting idea recently about building a particular
+        kind of conversational dataset, in a text format that could be used to
+        fine-tune an LLM for a particular task. So I needed to figure out how to
+        convert some audio I had into a text with diarization.
       </p>
       <p>
         Diarization means, simply put, who said what. It converts a string of
         words into something like:
       </p>
-      <CodeBlock code={`
+      <CodeBlock
+        code={`
 Speaker 1: Oh what a lovely day.
 Speaker 2: Oh what a lovely day, what a deal.
-        `} />
+        `}
+      />
       <p>You can view the entire source code for this blog entry here:</p>
       <a href="https://github.com/russedavid/diarization-stuff/blob/main/diarize_audio.py">
         github.com/russedavid/diarization-stuff
@@ -64,7 +64,8 @@ Speaker 2: Oh what a lovely day, what a deal.
         If you&apos;re not using a CUDA-enabled GPU, you can adapt the settings
         to utilize a CPU.
       </p>
-      <CodeBlock code={`
+      <CodeBlock
+        code={`
 import whisperx
 import subprocess
 
@@ -73,7 +74,8 @@ batch_size = 16
 compute_type = "float16"
 
 model = whisperx.load_model("large-v2", device, compute_type=compute_type, language="en")
-            `} />
+            `}
+      />
       <br />
       <h3>Audio Concatenation</h3>
       <p>
@@ -85,7 +87,8 @@ model = whisperx.load_model("large-v2", device, compute_type=compute_type, langu
         processing, retaining the context of all sessions as the audio is
         diarized.
       </p>
-      <CodeBlock code={`
+      <CodeBlock
+        code={`
 def concatenate_audios_ffmpeg(file_list, output_filename):
     with open("audio_list.txt", "w") as file:
         for audio_file in file_list:
@@ -93,7 +96,8 @@ def concatenate_audios_ffmpeg(file_list, output_filename):
     command = ["ffmpeg", "-f", "concat", "-safe", "0", "-i", "audio_list.txt", "-c", "copy", output_filename]
     subprocess.run(command, check=True)
     return whisperx.load_audio(output_filename)
-      `} />
+      `}
+      />
 
       <br />
       <h3>Transcribing and Aligning Speech</h3>
@@ -112,11 +116,13 @@ def concatenate_audios_ffmpeg(file_list, output_filename):
       <a href="https://huggingface.co/pyannote/speaker-diarization-3.1">
         huggingface.co/pyannote/speaker-diarization-3.1
       </a>
-      <CodeBlock code={`
+      <CodeBlock
+        code={`
 diarize_model = whisperx.DiarizationPipeline(model_name="pyannote/speaker-diarization-3.1", use_auth_token=hugging_face_api_key, device=device)
 diarize_segments = diarize_model(audio)
 result = whisperx.assign_word_speakers(diarize_segments, result)
-              `} />
+              `}
+      />
       <br />
       <h3>Structuring the Output</h3>
       <p>

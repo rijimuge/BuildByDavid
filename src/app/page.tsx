@@ -55,6 +55,8 @@ function ChannelLink({
                     ? "/github.jpg"
                     : site === "kaggle"
                       ? "/kaggle.png"
+                      : site === "x" ?
+                      "/x.png"
                       : "/linkedin.png"
                 }
                 width="15"
@@ -129,7 +131,12 @@ export default function Home() {
           name="Kaggle"
           site="kaggle"
         />
-        <ChannelPlaceholder />
+        <ChannelLink
+          img="/turbo.jpg"
+          link="https://twitter.com/davidtherusse"
+          name="X"
+          site="x"
+        />
       </div>
       I create functional and well designed web applications using JavaScript,
       TypeScript, React, Node.js, Python and more.
