@@ -126,17 +126,12 @@ export default function Home() {
       </div>
       <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
         <ChannelLink
-          img="/book.png"
-          link="https://www.kaggle.com/davidrussell04"
-          name="Kaggle"
-          site="kaggle"
-        />
-        <ChannelLink
           img="/turbo.jpg"
           link="https://twitter.com/davidtherusse"
           name="X"
           site="x"
         />
+        <ChannelPlaceholder />
       </div>
       I create functional and well designed web applications using JavaScript,
       TypeScript, React, Node.js, Python and more.

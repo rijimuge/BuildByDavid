@@ -12,13 +12,6 @@ export default function Page() {
         <h2 className="mb-2 text-xl font-semibold">Should I start a blog?</h2>
       </Link>
       <Link
-        href="blog/why-i-started-kaggling"
-        passHref
-        className="py-4 underline"
-      >
-        <h2 className="mb-2 text-xl font-semibold">Why I started kaggling</h2>
-      </Link>
-      <Link
         href="blog/quick-diarization"
         passHref
         className="py-4 underline"
